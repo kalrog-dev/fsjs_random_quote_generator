@@ -23,7 +23,7 @@ const quotes = [
   },
   {
     quote: "Live as if you were to die tomorrow. Learn as if you were to live forever.",
-    source: "Mahatma Gandhi "
+    source: "Mahatma Gandhi"
   },
   {
     quote: "It is never too late to be what you might have been.",
@@ -31,25 +31,42 @@ const quotes = [
   },
   {
     quote: "Everything you can imagine is real.",
-    source: "Pablo Picasso "
+    source: "Pablo Picasso"
   }
 ];
 
 /***
  * `getRandomQuote` function
 ***/
-
-
+function getRandomQuote() {
+  const randomIndex = Math.floor( Math.random() * quotes.length );
+  return quotes[randomIndex];
+}
 
 /***
  * `printQuote` function
 ***/
+function printQuote() {
+  const randomQuote = getRandomQuote();
+  let html = `
+    <p class="quote">${randomQuote.quote}</p>
+    <p class="source">${randomQuote.source}
+  `;
 
+  if (randomQuote.citation) {
+    html += `<span class="citation">${randomQuote.citation}</span>`;
+  }
 
+  if (randomQuote.year) {
+    html += `<span class="year">${randomQuote.year}</span>`;
+  }
+
+  html += "</p>";
+  document.getElementById('quote-box').innerHTML = html; 
+}
 
 /***
  * click event listener for the print quote button
  * DO NOT CHANGE THE CODE BELOW!!
 ***/
-
 document.getElementById('load-quote').addEventListener("click", printQuote, false);
