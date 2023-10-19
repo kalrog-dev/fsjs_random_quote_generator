@@ -65,17 +65,22 @@ function printQuote() {
 }
 
 // Change background color
-function changeBgColor() {
+function changeBackground() {
   const body = document.querySelector("body");
   const hue = Math.floor( Math.random() * 361 );              // 0-360 hue
   const saturation = Math.floor( Math.random() * 71 ) + 20;   // 20-90% saturation
   const lightness = Math.floor( Math.random() * 21 ) + 40;    // 40-60% lightness
-  body.style.backgroundColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+  body.style.backgroundImage = 
+    `radial-gradient(
+      circle,
+      hsl(${hue}, ${saturation}%, ${lightness}%),
+      hsl(${hue}, ${0}%, ${lightness - 30}%)
+    )`;
 }
 
 // Click event listener for the print quote button
 const quoteBtn = document.getElementById('load-quote');
 quoteBtn.addEventListener("click", () => {
   printQuote();
-  changeBgColor();
+  changeBackground();
 }, false);
