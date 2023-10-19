@@ -124,12 +124,9 @@ h1 {
   font-style: italic;
 }
 
-.citation:before {
-  content: ", ";
-  font-style: normal;
-}
-
-.year:before {
+.citation:before,
+.year:before,
+.type:before {
   content: ", ";
   font-style: normal;
 }
