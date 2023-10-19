@@ -43,28 +43,24 @@ function getRandomQuote() {
 
 // Build html to inject a quote
 function printQuote() {
+  changeBackground();
   const randomQuote = getRandomQuote();
   let html = 
-    `<p class="quote">${randomQuote.quote}</p>
-    <p class="source">${randomQuote.source}`;
+  `<p class="quote">${randomQuote.quote}</p>
+  <p class="source">${randomQuote.source}`;
 
-  if (randomQuote.citation) {
-    html += `<span class="citation">${randomQuote.citation}</span>`;
-  }
-
-  if (randomQuote.year) {
-    html += `<span class="year">${randomQuote.year}</span>`;
-  }
-
-  if (randomQuote.type) {
-    html += `<span class="type">${randomQuote.type}</span>`;
-  }
-
+  // Optional props
+  ["citation", "year", "type"].forEach(prop => {
+    if (randomQuote[prop]) {
+      html += `<span class=${prop}>${randomQuote[prop]}</span>`;
+    }
+  });
+  
   html += "</p>";
   document.getElementById('quote-box').innerHTML = html; 
 }
 
-// Change background color
+// Change background
 function changeBackground() {
   const body = document.querySelector("body");
   const hue = Math.floor( Math.random() * 361 );              // 0-360 hue
@@ -78,9 +74,9 @@ function changeBackground() {
     )`;
 }
 
+// Auto-refreshed quotes
+const refreshQuote = setInterval(printQuote, 10000);
+
 // Click event listener for the print quote button
 const quoteBtn = document.getElementById('load-quote');
-quoteBtn.addEventListener("click", () => {
-  printQuote();
-  changeBackground();
-}, false);
+quoteBtn.addEventListener("click", printQuote, false);
