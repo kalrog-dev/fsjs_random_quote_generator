@@ -64,5 +64,18 @@ function printQuote() {
   document.getElementById('quote-box').innerHTML = html; 
 }
 
+// Change background color
+function changeBgColor() {
+  const body = document.querySelector("body");
+  const hue = Math.floor( Math.random() * 361 );              // 0-360 hue
+  const saturation = Math.floor( Math.random() * 71 ) + 20;   // 20-90% saturation
+  const lightness = Math.floor( Math.random() * 21 ) + 40;    // 40-60% lightness
+  body.style.backgroundColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+}
+
 // Click event listener for the print quote button
-document.getElementById('load-quote').addEventListener("click", printQuote, false);
+const quoteBtn = document.getElementById('load-quote');
+quoteBtn.addEventListener("click", () => {
+  printQuote();
+  changeBgColor();
+}, false);
