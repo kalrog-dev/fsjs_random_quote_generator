@@ -7,21 +7,21 @@
   font-family: 'Playfair Display';
   font-weight: 400;
   font-style: normal;
-  src: url("../fonts/PlayfairDisplay-Regular.ttf");
+  src: url("../assets/fonts/PlayfairDisplay-Regular.ttf");
 }
 
 @font-face {
   font-family: 'Playfair Display';
   font-weight: 400;
   font-style: italic;
-  src: url("../fonts/PlayfairDisplay-Italic.ttf");
+  src: url("../assets/fonts/PlayfairDisplay-Italic.ttf");
 }
 
 @font-face {
   font-family: 'Playfair Display';
   font-weight: 700;
   font-style: normal;
-  src: url("../fonts/PlayfairDisplay-Bold.ttf");
+  src: url("../assets/fonts/PlayfairDisplay-Bold.ttf");
 }
 
 body {
