@@ -135,6 +135,11 @@ h1 {
   font-style: normal;
 }
 
+/* Markdown image */
+img[alt="Random Quote Generator"] {
+  max-width: 450px;
+}
+
 @media (min-width: 768px) {
   body {
     padding: 25px;
