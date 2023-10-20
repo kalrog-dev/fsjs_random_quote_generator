@@ -30,48 +30,48 @@ const quotes = [
   }
 ];
 
-// Get a random quote
-let randomIndex, lastIndex;
+// Get a different random quote
+let randIndex, lastIndex;
 function getRandomQuote() {
-  // Repeat until the quote has changed
   do {
-    randomIndex = Math.floor( Math.random() * quotes.length );
-  } while (randomIndex === lastIndex);
-  lastIndex = randomIndex;
-  return quotes[randomIndex];
+    randIndex = Math.floor( Math.random() * quotes.length );
+  } while (randIndex === lastIndex);
+  lastIndex = randIndex;
+  return quotes[randIndex];
 }
 
 // Build html to inject a quote
 function printQuote() {
-  const randomQuote = getRandomQuote();
+  const randQuote = getRandomQuote();
   let html = 
-    `<p class="quote">${randomQuote.quote}</p>
-    <p class="source">${randomQuote.source}`;
+    `<p class="quote">${randQuote.quote}</p>
+    <p class="source">${randQuote.source}`;
   
   // Optional props
   ["citation", "year", "type"].forEach(prop => {
-    if (randomQuote[prop]) {
-      html += `<span class=${prop}>${randomQuote[prop]}</span>`;
+    if (randQuote.hasOwnProperty(prop)) {
+      html += `<span class=${prop}>${randQuote[prop]}</span>`;
     }
   });
   
   html += "</p>";
-  document.getElementById('quote-box').innerHTML = html; 
-  changeBackground();
+  document.getElementById("quote-box").innerHTML = html; 
+  changeBgColor();
 }
 
 // Auto-refreshed quotes
 const refreshQuote = setInterval(printQuote, 15000);
 
-// Change background color
-function changeBackground() {
+// Change background color (random hue, saturation & lightness within a preferred range)
+function changeBgColor() {
   const body = document.querySelector("body");
-  const hue = Math.floor( Math.random() * 361 );              // 0-360 hue
-  const saturation = Math.floor( Math.random() * 61 ) + 20;   // 20-80% saturation
-  const lightness = Math.floor( Math.random() * 21 ) + 40;    // 40-60% lightness
-  body.style.backgroundColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+  body.style.backgroundColor = `hsl(${randInt(0, 360)}, ${randInt(20, 80)}%, ${randInt(40, 60)}%)`;
+}
+
+// Generate a random value in a range
+function randInt(min = 0, max) {
+  return Math.floor( Math.random() * (max - min + 1) ) + min;
 }
 
 // Click event listener for the print quote button
-const quoteBtn = document.getElementById('load-quote');
-quoteBtn.addEventListener("click", printQuote, false);
+document.getElementById("load-quote").addEventListener("click", printQuote, false);

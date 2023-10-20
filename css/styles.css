@@ -90,6 +90,7 @@ h1 {
   position: relative;
   margin: 0;
   margin-left: 10px;
+  padding-right: 20px;
 }
 
 .quote:before,
@@ -157,7 +158,7 @@ h1 {
   }
 
   .container {
-    padding: 25px 45px 15px 55px;
+    padding: 25px 15px 15px 55px;
     background: rgba(0, 0, 0, 0.1);
     border-left: 5px solid rgba(0, 0, 0, 0.3);
     border-radius: 0 4px 4px 0;
