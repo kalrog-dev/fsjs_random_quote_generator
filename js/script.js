@@ -56,22 +56,22 @@ function printQuote() {
   
   html += "</p>";
   document.getElementById("quote-box").innerHTML = html; 
-  changeBgColor();
+  changeBgColor("body");
+}
+
+// Change background color (random hue, saturation & lightness within a preferred range)
+function changeBgColor(element) {
+  const el = document.querySelector(element);
+  el.style.backgroundColor = `hsl(${randInt(0, 360)}, ${randInt(20, 80)}%, ${randInt(40, 60)}%)`;
+}
+
+// Generate a random value in a range
+function randInt(min, max) {
+  return Math.floor( Math.random() * (max - min + 1) ) + min;
 }
 
 // Auto-refreshed quotes
 const refreshQuote = setInterval(printQuote, 15000);
-
-// Change background color (random hue, saturation & lightness within a preferred range)
-function changeBgColor() {
-  const body = document.querySelector("body");
-  body.style.backgroundColor = `hsl(${randInt(0, 360)}, ${randInt(20, 80)}%, ${randInt(40, 60)}%)`;
-}
-
-// Generate a random value in a range
-function randInt(min = 0, max) {
-  return Math.floor( Math.random() * (max - min + 1) ) + min;
-}
 
 // Click event listener for the print quote button
 document.getElementById("load-quote").addEventListener("click", printQuote, false);
