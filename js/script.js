@@ -57,6 +57,7 @@ function printQuote() {
   html += "</p>";
   document.getElementById("quote-box").innerHTML = html; 
   changeBgColor("body");
+  timer.reset();
 }
 
 // Change background color (random hue, saturation & lightness within a preferred range)
@@ -70,8 +71,19 @@ function randInt(min, max) {
   return Math.floor( Math.random() * (max - min + 1) ) + min;
 }
 
-// Auto-refreshed quotes
-const refreshQuote = setInterval(printQuote, 15000);
+// Auto-refreshed quotes (the counter resets if user clicks the quote button)
+const timer = {
+  refreshRate: 10,    // How often quotes refresh in seconds
+  time: 10,           // Counter to count down in seconds
+  update() {
+    timer.time--;                       // Update the counter
+    timer.time <= 0 && printQuote();    // Run printQuote() && timer.reset() if time = 0
+  },
+  reset() {
+    timer.time = timer.refreshRate;
+  }
+}
+setInterval(timer.update, 1000);        // Update the counter every second
 
 // Click event listener for the print quote button
 document.getElementById("load-quote").addEventListener("click", printQuote, false);
